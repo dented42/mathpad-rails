@@ -45,6 +45,10 @@ group :development, :test do
 
   # diagramming things is useful.
   gem 'rails-erd'
+
+  # I like specs.
+  gem 'rspec', '~> 3.0'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :production do
