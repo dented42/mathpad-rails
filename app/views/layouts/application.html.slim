@@ -15,11 +15,5 @@ html
       p class="alert"
         = alert
 
-    div class="navigation"
-      ul
-        li
-          == link_to 'Home', page_path('home')
-        li
-          == link_to 'About', page_path('about')
-
+    = render 'layouts/navbar'
     == yield
