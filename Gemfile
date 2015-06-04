@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # It's for the users
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 3.5.1'
+gem 'pundit', '~> 1.0.1'
 
 # static pages are nice
 gem 'high_voltage', '~> 2.3.0'
