@@ -1,8 +1,12 @@
 p#notice = notice
 
-p
-  strong Email:
-  = @user.email
+dl
+  dt Username
+  dd
+    = @user.username
+  dt Email
+  dd
+    = @user.email
 
 / = link_to 'Edit', edit_user_path(@user)
 / '|
