@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get '/pages/home', to: redirect('/')
+  root :to => 'high_voltage/pages#show', :id => 'home'
+
+  devise_for :users
+  resources :users, :only => [:show, :index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
