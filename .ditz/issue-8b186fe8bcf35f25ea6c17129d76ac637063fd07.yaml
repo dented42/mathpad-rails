@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Demo Mathpad
+desc: |-
+  I should like to have a demonstration pad that doesn't require a user
+  account to play with.
+type: :feature
+component: Userless
+release: v1.0.0.0
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-06-10 20:59:47.821016 Z
+references: []
+
+id: 8b186fe8bcf35f25ea6c17129d76ac637063fd07
+log_events: 
+- - 2015-06-10 20:59:47.821359 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""

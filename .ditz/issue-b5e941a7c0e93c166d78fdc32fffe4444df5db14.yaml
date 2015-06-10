@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Tags
+desc: Tags, mathpads should be taggable.
+type: :feature
+component: Model
+release: v1.0.0.0
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-06-10 20:52:26.604838 Z
+references: []
+
+id: b5e941a7c0e93c166d78fdc32fffe4444df5db14
+log_events: 
+- - 2015-06-10 20:52:26.605207 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""
+- - 2015-06-10 20:55:06.683447 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - assigned to release v1.0.0.0 from unassigned
+  - ""

@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: MathPads
+desc: Mathpads, slightly necessary. They are, after all, the core feature. ;)
+type: :feature
+component: rails-mathpad
+release: v1.0.0.0
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-06-10 20:54:31.854993 Z
+references: []
+
+id: 948824165e49acd37f4b1f8ffc835df0c53c15ea
+log_events: 
+- - 2015-06-10 20:54:31.855467 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""
