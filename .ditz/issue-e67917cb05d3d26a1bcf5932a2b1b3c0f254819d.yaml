@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Users
+desc: Users. People should be able to create accounts, log in, log out, and so on.
+type: :feature
+component: rails-mathpad
+release: v1.0.0.0
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-06-10 20:51:35.673008 Z
+references: []
+
+id: e67917cb05d3d26a1bcf5932a2b1b3c0f254819d
+log_events: 
+- - 2015-06-10 20:51:35.673393 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""
+- - 2015-06-10 20:55:24.164310 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - assigned to release v1.0.0.0 from unassigned
+  - ""
