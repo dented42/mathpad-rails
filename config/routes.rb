@@ -7,7 +7,13 @@ Rails.application.routes.draw do
   root :to => 'high_voltage/pages#show', :id => 'home'
 
   devise_for :users
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index] do
+    resources :pads, :only => [:index, :new, :create]
+  end
+
+  resources :pads, :only => [:index, :show, :edit, :update, :destroy] do
+    resources :lines
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
