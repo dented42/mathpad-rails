@@ -41,6 +41,9 @@ gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# lists are nice
+gem 'ranked-model'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -57,6 +60,9 @@ group :development, :test do
   # I like specs.
   gem 'rspec', '~> 3.0'
   gem 'rspec-rails', '~> 3.0'
+
+  # pry is pretty
+  gem 'pry-rails'
 end
 
 group :production do
