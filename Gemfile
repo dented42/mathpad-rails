@@ -63,6 +63,9 @@ group :development, :test do
 
   # pry is pretty
   gem 'pry-rails'
+
+  #factories are nice
+  gem 'fabrication'
 end
 
 group :production do
