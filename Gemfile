@@ -57,6 +57,12 @@ group :development, :test do
   # I like specs.
   gem 'rspec', '~> 3.0'
   gem 'rspec-rails', '~> 3.0'
+
+  # pry is pretty
+  gem 'pry-rails'
+
+  #factories are nice
+  gem 'fabrication'
 end
 
 group :production do
