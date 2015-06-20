@@ -66,6 +66,7 @@ group :development, :test do
 
   #factories are nice
   gem 'fabrication'
+  gem 'faker'
 end
 
 group :production do
