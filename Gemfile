@@ -63,6 +63,8 @@ group :development, :test do
 
   # pry is pretty
   gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 
   #factories are nice
   gem 'fabrication'

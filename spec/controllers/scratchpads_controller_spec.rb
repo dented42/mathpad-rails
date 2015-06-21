@@ -20,17 +20,6 @@ require 'rails_helper'
 
 RSpec.describe ScratchpadsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Scratchpad. As you add validations to Scratchpad, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ScratchpadsController. Be sure to keep this updated too.
@@ -38,7 +27,7 @@ RSpec.describe ScratchpadsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all scratchpads as @scratchpads" do
-      scratchpad = Scratchpad.create! valid_attributes
+      scratchpad = Fabricate(:scratchpad)
       get :index, {}, valid_session
       expect(assigns(:scratchpads)).to eq([scratchpad])
     end
@@ -46,7 +35,7 @@ RSpec.describe ScratchpadsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested scratchpad as @scratchpad" do
-      scratchpad = Scratchpad.create! valid_attributes
+      scratchpad = Fabricate(:scratchpad)
       get :show, {:id => scratchpad.to_param}, valid_session
       expect(assigns(:scratchpad)).to eq(scratchpad)
     end
@@ -61,7 +50,7 @@ RSpec.describe ScratchpadsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested scratchpad as @scratchpad" do
-      scratchpad = Scratchpad.create! valid_attributes
+      scratchpad = Fabricate(:scratchpad)
       get :edit, {:id => scratchpad.to_param}, valid_session
       expect(assigns(:scratchpad)).to eq(scratchpad)
     end
@@ -69,21 +58,33 @@ RSpec.describe ScratchpadsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+
+      before(:each) do
+        user = Fabricate(:user)
+        @scratchpad_attributes = Fabricate.attributes_for(:scratchpad).merge({"user_id" => user.id})
+      end
+
       it "creates a new Scratchpad" do
         expect {
-          post :create, {:scratchpad => valid_attributes}, valid_session
+          post :create, {:scratchpad => @scratchpad_attributes}, valid_session
         }.to change(Scratchpad, :count).by(1)
       end
 
       it "assigns a newly created scratchpad as @scratchpad" do
-        post :create, {:scratchpad => valid_attributes}, valid_session
+        post :create, {:scratchpad => @scratchpad_attributes}, valid_session
         expect(assigns(:scratchpad)).to be_a(Scratchpad)
         expect(assigns(:scratchpad)).to be_persisted
       end
 
       it "redirects to the created scratchpad" do
-        post :create, {:scratchpad => valid_attributes}, valid_session
+        # TODO: This will require the user to be logged in to work,
+        # the user_id will be that of the current user.
+        post :create, {:scratchpad => @scratchpad_attributes}, valid_session
         expect(response).to redirect_to(Scratchpad.last)
+      end
+
+      it "should fail if user_id is not that of the current user" do
+        expect(1).to equal(2)
       end
     end
 
@@ -107,35 +108,44 @@ RSpec.describe ScratchpadsController, type: :controller do
       }
 
       it "updates the requested scratchpad" do
-        scratchpad = Scratchpad.create! valid_attributes
+        scratchpad = Fabricate(:scratchpad)
         put :update, {:id => scratchpad.to_param, :scratchpad => new_attributes}, valid_session
         scratchpad.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested scratchpad as @scratchpad" do
-        scratchpad = Scratchpad.create! valid_attributes
-        put :update, {:id => scratchpad.to_param, :scratchpad => valid_attributes}, valid_session
+        scratchpad = Fabricate(:scratchpad)
+        put :update, {:id => scratchpad.to_param, :scratchpad => Fabricate.attributes_for(:scratchpad) }, valid_session
         expect(assigns(:scratchpad)).to eq(scratchpad)
       end
 
       it "redirects to the scratchpad" do
-        scratchpad = Scratchpad.create! valid_attributes
-        put :update, {:id => scratchpad.to_param, :scratchpad => valid_attributes}, valid_session
+        scratchpad = Fabricate(:scratchpad)
+        put :update, {:id => scratchpad.to_param, :scratchpad => Fabricate.attributes_for(:scratchpad) }, valid_session
         expect(response).to redirect_to(scratchpad)
       end
     end
 
     context "with invalid params" do
+      before(:each) do
+        @wrong_attributes = lambda {
+          {
+            "title" => nil,
+            "lcars_interface_id" => 47
+          }
+        }
+      end
+
       it "assigns the scratchpad as @scratchpad" do
-        scratchpad = Scratchpad.create! valid_attributes
-        put :update, {:id => scratchpad.to_param, :scratchpad => invalid_attributes}, valid_session
+        scratchpad = Fabricate(:scratchpad)
+        put :update, {:id => scratchpad.to_param, :scratchpad => @wrong_attributes.call() }, valid_session
         expect(assigns(:scratchpad)).to eq(scratchpad)
       end
 
       it "re-renders the 'edit' template" do
-        scratchpad = Scratchpad.create! valid_attributes
-        put :update, {:id => scratchpad.to_param, :scratchpad => invalid_attributes}, valid_session
+        scratchpad = Fabricate(:scratchpad)
+        put :update, {:id => scratchpad.to_param, :scratchpad => @wrong_attributes.call() }, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -143,14 +153,14 @@ RSpec.describe ScratchpadsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested scratchpad" do
-      scratchpad = Scratchpad.create! valid_attributes
+      scratchpad = Fabricate(:scratchpad)
       expect {
         delete :destroy, {:id => scratchpad.to_param}, valid_session
       }.to change(Scratchpad, :count).by(-1)
     end
 
     it "redirects to the scratchpads list" do
-      scratchpad = Scratchpad.create! valid_attributes
+      scratchpad = Fabricate(:scratchpad)
       delete :destroy, {:id => scratchpad.to_param}, valid_session
       expect(response).to redirect_to(scratchpads_url)
     end

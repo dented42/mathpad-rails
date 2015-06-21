@@ -69,6 +69,6 @@ class ScratchpadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scratchpad_params
-      params.require(:scratchpad).permit(:title, :description)
+      params.require(:scratchpad).permit(:title, :description, :user_id)
     end
 end

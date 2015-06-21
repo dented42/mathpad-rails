@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "scratchpads/edit", type: :view do
   before(:each) do
-    @scratchpad = assign(:scratchpad, Scratchpad.create!(
-      :title => "MyString",
-      :description => "MyText"
-    ))
+    @scratchpad = assign(:scratchpad, Fabricate(:scratchpad))
   end
 
   it "renders the edit scratchpad form" do

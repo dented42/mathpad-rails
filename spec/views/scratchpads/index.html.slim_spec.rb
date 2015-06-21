@@ -3,20 +3,19 @@ require 'rails_helper'
 RSpec.describe "scratchpads/index", type: :view do
   before(:each) do
     assign(:scratchpads, [
-      Scratchpad.create!(
-        :title => "Title",
-        :description => "MyText"
-      ),
-      Scratchpad.create!(
-        :title => "Title",
-        :description => "MyText"
-      )
+      Fabricate(:scratchpad),
+      Fabricate(:scratchpad)
     ])
   end
 
   it "renders a list of scratchpads" do
     render
-    assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "table>tbody>tr" do | rows |
+      assert_select rows[0], "td", :text => Scratchpad.all[0].title
+      assert_select rows[0], "td", :text => Scratchpad.all[0].user.username
+      
+      assert_select rows[1], "td", :text => Scratchpad.all[1].title
+      assert_select rows[1], "td", :text => Scratchpad.all[1].user.username
+    end
   end
 end

@@ -1,4 +1,6 @@
 Fabricator(:scratchpad) do
-  title       "MyString"
-  description "MyText"
+  title       { Faker::App.name }
+  description { Faker::Hacker.adjective + " " + Faker::Hacker.ingverb + " " + Faker::Hacker.noun }
+
+  user
 end

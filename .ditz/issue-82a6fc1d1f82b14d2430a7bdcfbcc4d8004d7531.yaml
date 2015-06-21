@@ -1,0 +1,23 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "Scratchpad POST #create allows arbitrary user_id"
+desc: |-
+  The scratchpads_controller has `:user_id` in `scratchpad_params`. This
+  should probably be altered to make the controller check that the
+  `user_id` is that of the currently logged in user, either that or just
+  take it from the session directly and disallow that parameter
+  entirely.
+type: :bugfix
+component: rails-mathpad
+release: v1.0.0.0
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-06-21 18:37:11.328530 Z
+references: []
+
+id: 82a6fc1d1f82b14d2430a7bdcfbcc4d8004d7531
+log_events: 
+- - 2015-06-21 18:37:11.329071 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""
