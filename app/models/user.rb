@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
     :presence => true,
     :uniqueness => { :case_sensitive => false }
 
+  validates :email, :presence => true
+
 end
