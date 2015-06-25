@@ -1,0 +1,21 @@
+h1 Listing lines
+
+table
+  thead
+    tr
+      th Content
+      th
+      th
+      th
+
+  tbody
+    - @lines.each do |line|
+      tr
+        td = line.content
+        td = link_to 'Show', line
+        td = link_to 'Edit', edit_line_path(line)
+        td = link_to 'Destroy', line, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Line', new_line_path
