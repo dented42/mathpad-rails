@@ -89,13 +89,22 @@ RSpec.describe ScratchpadsController, type: :controller do
     end
 
     context "with invalid params" do
+      before(:each) do
+        @wrong_attributes = lambda {
+          {
+            "title" => nil,
+            "lcars_interface_id" => 47
+          }
+        }
+      end
+      
       it "assigns a newly created but unsaved scratchpad as @scratchpad" do
-        post :create, {:scratchpad => invalid_attributes}, valid_session
+        post :create, {:scratchpad => @wrong_attributes.call()}, valid_session
         expect(assigns(:scratchpad)).to be_a_new(Scratchpad)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:scratchpad => invalid_attributes}, valid_session
+        post :create, {:scratchpad => @wrong_attributes.call()}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -104,14 +113,18 @@ RSpec.describe ScratchpadsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        Fabricate.attributes_for(:scratchpad)
       }
 
       it "updates the requested scratchpad" do
         scratchpad = Fabricate(:scratchpad)
         put :update, {:id => scratchpad.to_param, :scratchpad => new_attributes}, valid_session
         scratchpad.reload
-        skip("Add assertions for updated state")
+
+        expect(scratchpad.title).to eq(new_attributes.delete("title"))
+        expect(scratchpad.description).to eq(new_attributes.delete("description"))
+        expect(scratchpad.user.id).to eq(new_attributes.delete("user_id"))
+        expect(new_attributes.count).to eq(0) # check we've tested everything
       end
 
       it "assigns the requested scratchpad as @scratchpad" do
