@@ -1,14 +1,13 @@
 class LinesController < ApplicationController
-  before_action :set_line, only: [:show, :edit, :update, :destroy]
 
-  # GET /lines
-  # GET /lines.json
+  # GET /scratchpads/:scratchpad_id/lines
+  # GET /scratchpads/:scratchpad_id/lines.json
   def index
-    @lines = Line.all
+    @lines = Line.find(params[:scratchpad_id]).lines.rank(:order).all
   end
 
-  # GET /lines/1
-  # GET /lines/1.json
+  # GET /scratchpads/:scratchpad_id/lines/1
+  # GET /scratchpads/:scratchpad_id/lines/1.json
   def show
   end
 

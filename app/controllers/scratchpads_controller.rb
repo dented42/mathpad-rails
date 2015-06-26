@@ -7,14 +7,24 @@ class ScratchpadsController < ApplicationController
     @scratchpads = Scratchpad.all
   end
 
+  # GET /users/:user_id/scratchpads
+  # GET /user/:user_id/scratchpads.json
+  def user_index
+    @user = User.find(params[:user_id])
+    @scratchpads = @user.scratchpads.all
+  end
+
   # GET /scratchpads/1
   # GET /scratchpads/1.json
   def show
+    @lines = @scratchpad.ordered_lines
   end
 
   # GET /scratchpads/new
   def new
+    authenticate_user!
     @scratchpad = Scratchpad.new
+    @scratchpad.user = current_user
   end
 
   # GET /scratchpads/1/edit

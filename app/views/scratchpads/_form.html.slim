@@ -5,7 +5,8 @@
       ul
         - @scratchpad.errors.full_messages.each do |message|
           li = message
-
+  
+  = f.hidden_field :user_id
   .field
     = f.label :title
     = f.text_field :title

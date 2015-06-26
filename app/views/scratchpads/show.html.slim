@@ -7,6 +7,11 @@ p
   strong Description:
   = @scratchpad.description
 
+  div
+    - @lines.each do |line|
+      p
+        = line.content
+
 = link_to 'Edit', edit_scratchpad_path(@scratchpad)
 '|
 = link_to 'Back', scratchpads_path
