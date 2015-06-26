@@ -35,6 +35,9 @@ gem 'high_voltage', '~> 2.3.0'
 # on a diet
 gem 'slim-rails', '~> 3.0.1'
 
+# all the cool kids are doing it
+gem 'react-rails'
+
 # Use Puma as the app server
 gem 'puma'
 
