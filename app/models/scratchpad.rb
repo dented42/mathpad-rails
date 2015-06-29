@@ -7,7 +7,7 @@ class Scratchpad < ActiveRecord::Base
   validates :user, :presence => true
 
   def ordered_lines
-    self.lines.rank(:order)
+    lines = self.lines.rank(:order)
   end
   
 end

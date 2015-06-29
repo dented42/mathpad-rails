@@ -17,7 +17,12 @@ class ScratchpadsController < ApplicationController
   # GET /scratchpads/1
   # GET /scratchpads/1.json
   def show
-    @lines = @scratchpad.ordered_lines
+    respond_to do | format |
+      format.html do
+        @scratchpad_json = render_to_string json: @scratchpad
+      end
+      format.json { render json: @scratchpad }
+    end
   end
 
   # GET /scratchpads/new

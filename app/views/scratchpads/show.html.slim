@@ -1,17 +1,7 @@
 p#notice = notice
 
-p
-  strong Title:
-  = @scratchpad.title
-p
-  strong Description:
-  = @scratchpad.description
-
-  div
-    - @lines.each do |line|
-      p
-        = line.content
+= react_component 'Scratchpad', @scratchpad_json
 
 = link_to 'Edit', edit_scratchpad_path(@scratchpad)
-'|
+
 = link_to 'Back', scratchpads_path

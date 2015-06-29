@@ -1,4 +1,0 @@
-json.array!(@lines) do |line|
-  json.extract! line, :id, :content
-  json.url line_url(line, format: :json)
-end
