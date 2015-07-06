@@ -1,107 +1,119 @@
+//= require hash
+
 { div, p, h2, h3, table, thead, tbody, th, td, tr, input, button,
-  form } = React.DOM
+  form, span } = React.DOM
+
+##############
+# Scratchpad #
+##############
 
 @Scratchpad = React.createClass
-  displayName: "ScratchpadComponent"
-  propTypes:
-    id: React.PropTypes.number.isRequired
-  getInitialState: ->
-    id: @props.id
-    title: @props.title
-    author: @props.user
-    description: @props.description
-    lines: @props.lines
-  getDefaultProps: ->
-    scratchpad: []
-  render: ->
-    div className: "scratchpad",
-      h2 className: "scratchpad-title", @state.title
-      h3 className: "scratchpad-author", "by " + @state.author.username
-      p className: "scratchpad-description", @state.description
-      table className: "scratchpad-line-container",
-        tbody {},
-          for line in @state.lines.sort((a, b) -> a.order - b.order)
-            React.createElement Line,
-              id: line.id,
-              key: line.id
-              initialContent: line.content,
-              initialOrder: line.order
-
-@Line = React.createClass
-  displayName: "LineComponent"
+  displayName: "Scratchpad"
   
   propTypes:
     id: React.PropTypes.number.isRequired
-    initialOrder: React.PropTypes.number.isRequired
-    initialContent: React.PropTypes.string.isRequired
 
   getInitialState: ->
-    dirty: true
-    editing: false
-    content: @props.initialContent
-    order: @props.initialOrder
-
-  componentDidMount: ->
-    @queueTypesetting()
-
-  componentDidUpdate: ->
-    if (@state.editing == false) && (@state.dirty == true)
-      @queueTypesetting()
-
-  handleClick: (event) ->
-    if @state.editing == false
-      @setState editing: @state.content, () -> @focusInput()
-
-  focusInput: ->
-    React.findDOMNode(this.refs.editField).focus()
-
-  endEditing: ->
-    @setState editing: false
-
-  queueTypesetting: ->
-    if @state.editing == false
-      cell = React.findDOMNode(this.refs.mathCell)
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub, cell])
-      @setState dirty: false
-
-  handleEditing: (event) ->
-    @setState editing: event.target.value
-
-  resetEditing: (event) ->
-    event.preventDefault()
-    @endEditing()
-
-  submitEditing: (event) ->
-    event.preventDefault()
-    @setState content: @state.editing
-    @setState dirty: true
-    @endEditing()
+    unique: @props.lines.length
+    title: @props.title
+    author: @props.user
+    description: @props.description
+    lines: {local_id: idx, math: line} for line, idx in @props.lines
 
   render: ->
-    tr
-      className: "scratchpad-line"
-      onClick: @handleClick
-      td
-        key: "td-" + @props.id
-        ref: "mathCell"
-        className: "scratchpad-line-content"
-        if !(@state.editing == false)
-          form {},
-            [button
-              type: "reset"
-              key: "reset-" + @props.id
-              onClick: @resetEditing
-              "reset"
-            input
-              type: "text"
-              key: "input-" + @props.id
-              onChange: @handleEditing
-              ref: "editField"
-              value: @state.editing
-            button
-              type: "submit"
-              key: "submit-" + @props.id
-              onClick: @submitEditing
-              "submit"]
-        else
-          "\\(" + @state.content + "\\)"
+    div className: "scratchpad",
+      React.createElement ScratchpadMetadata,
+        scratchpad: @props
+      h2 className: "title", @state.title
+      h3 className: "author", "by " + @state.author.username
+      p className: "description", @state.description
+      React.createElement Lines,
+        initialLines: @state.lines
+
+#########
+# Lines #
+#########
+
+@Lines = React.createClass
+  displayName: "LinesComponent"
+  
+  propTypes:
+    initialLines: React.PropTypes.arrayOf(React.PropTypes.string)
+
+  getInitialState: ->
+    lines: @props.initialLines
+    dirty: [0...(@props.initialLines.length)]
+    editing: []
+
+  componentDidMount: ->
+    @processDirty()
+
+  componentDidUpdate: ->
+    @processDirty()
+
+  processDirty: ->
+    dirty =  @state.dirty
+    if dirty.length > 0
+      dirt = dirty[0]
+      @typesetAt(dirt)
+      @setState dirty: dirty[1..]
+
+  typesetAt: (idx) ->
+    cell = React.findDOMNode(this.refs.lineHolder).children[idx]
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, cell])
+
+  insert: (p) ->
+    dirty = @state.dirty
+    editing = @state.editing
+    for lineIdx, idx in dirty when lineIdx >= p
+      dirty[idx]++
+    for editIdx, idx in editing when editIdx >= p
+      editing[idx]++
+    @setState dirty: dirty, editing: editing
+
+  delete: (p) ->
+    dirty = @state.dirty
+    editing = @state.editing
+    for lineIdx, idx in dirty when lineIdx > p
+      dirty[idx]--
+    for editIdx, idx in editing when editIdx > p
+      editing[idx]--
+    @setState dirty: dirty, editing: editing
+
+  handleEditClick: (evt) ->
+    idx = @indexForEquation()
+
+  render: ->
+    table className: "line-container",
+      tbody ref: "lineHolder",
+        for line, idx in @state.lines
+          tr className: "line-row",
+            td className: "line-cell",
+               span onClick: @handleEditClick,
+                 "\\(" + line + "\\)"
+
+
+    #     if !(@state.editing == false)
+    #       form {},
+    #         [button
+    #           type: "reset"
+    #           key: "reset"
+    #           onClick: @resetEditing
+    #           "reset"
+    #         input
+    #           type: "text"
+    #           key: "input"
+    #           onChange: @handleEditing
+    #           ref: "editField"
+    #           value: @state.editing
+    #         button
+    #           type: "submit"
+    #           key: "submit"
+    #           onClick: @submitEditing
+    #           "submit"]
+    #     else
+    #       "\\(" + @state.content + "\\)"
+
+
+#      cell = React.findDOMNode(this.refs.mathCell)
+#      
