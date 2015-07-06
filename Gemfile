@@ -35,6 +35,9 @@ gem 'high_voltage', '~> 2.3.0'
 # on a diet
 gem 'slim-rails', '~> 3.0.1'
 
+# all the cool kids are doing it
+gem 'react-rails'
+
 # Use Puma as the app server
 gem 'puma'
 
@@ -57,6 +60,13 @@ group :development, :test do
   # I like specs.
   gem 'rspec', '~> 3.0'
   gem 'rspec-rails', '~> 3.0'
+
+  # pry is pretty
+  gem 'pry-rails'
+
+  #factories are nice
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :production do
