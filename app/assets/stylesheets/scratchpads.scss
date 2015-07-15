@@ -3,19 +3,47 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .scratchpad {
-  outline: { style: solid; width: 1px }
-}
 
-.title, .author, .description {
-  border: { style: solid; width: 1px }
-}
+  table.line-container {
 
+//    width: 100%;
 
-.line-container {
-  text-align: center;
-  border: { style: solid; width: 1px }
-}
+    col.content {
+//      width: 100%;
+    }
+    
+    tr.line {
+      text-align: center;
 
-.line-row {
-  outline: { style: solid; width: 1px }
+      // td.content-cell {
+      //   background-color: red;
+      //   width: 100%;
+      // }
+
+      .proxy {
+        background-color: red;
+        line-height: 0.75em;
+        font-size: 0.75em;
+        background-color: #EEE;
+        color: #CCC;
+        border-radius: 50vh;
+        transition: 0.5s;
+      
+        &:hover {
+          font-size: 1em;
+          line-height: 1em;
+          background-color: #DDD;
+          color: #888;
+        };
+      };
+
+      .changed {
+        background-color: #FCC;
+      };
+
+      .pending {
+        background-color: #FFC;
+      };
+    };
+  };
 }

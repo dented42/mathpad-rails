@@ -19,7 +19,8 @@ class ScratchpadsController < ApplicationController
   def show
     respond_to do | format |
       format.html do
-        @scratchpad_json = render_to_string json: @scratchpad
+        @scratchpad_props = render_to_string json: @scratchpad,
+          meta: { editable: current_user?(@scratchpad.user) }
       end
       format.json { render json: @scratchpad }
     end
@@ -80,6 +81,14 @@ class ScratchpadsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_scratchpad
       @scratchpad = Scratchpad.find(params[:id])
+    end
+
+    def current_user?(user)
+      if user_signed_in? then
+        current_user.id == user.id
+      else
+        false
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,25 +1,36 @@
-div class="navigation"
-  ul
-    li
-      == link_to 'Home', page_path('home')
-    li
-      == link_to 'About', page_path('about')
-    li
-      == link_to 'Users', users_path
-    li
-      | Profile
-      / should this logic go into a controller?
-      - if user_signed_in?
-        ul
-          li
-            == link_to 'Account', user_path(current_user)
-          li
-            = link_to 'New Scratchpad', new_scratchpad_path
-          li
-            == link_to 'Log out', destroy_user_session_path, :method => :delete
-      - else
-        ul
-          li
-            == link_to 'Login', new_user_session_path
-            li
-              == link_to 'Register', new_user_registration_path
+header.navigation role="banner" 
+  .navigation-wrapper
+    a.logo href="javascript:void(0)" 
+      = image_tag "logo.svg", alt: "Logo image"
+    a#js-mobile-menu.navigation-menu-button href="javascript:void(0)"  MENU
+    nav role="navigation" 
+      ul#js-navigation-menu.navigation-menu.show
+        li.nav-link
+          = link_to 'Home', page_path('home')
+        li.nav-link
+          = link_to 'About', page_path('about')
+        li.nav-link
+          = link_to 'Users', users_path
+        li.nav-link.more
+          a href="javascript:void(0)"  Profile
+          - if user_signed_in?
+            ul.submenu
+              li
+                = link_to 'Account', user_path(current_user) 
+              li
+                = link_to 'New Scratchpad', new_scratchpad_path
+              li
+                = link_to 'Log out', destroy_user_session_path, :method => :delete
+          - else
+            ul.submenu
+              li
+                == link_to 'Login', new_user_session_path
+              li
+                == link_to 'Register', new_user_registration_path
+    / search isn't necessary
+      .navigation-tools
+        .search-bar
+          form role="search" 
+            input placeholder=("Enter Search") type="search" /
+            button type="submit" 
+              img alt=("Search Icon") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" /
