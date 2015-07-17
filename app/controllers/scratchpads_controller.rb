@@ -20,7 +20,11 @@ class ScratchpadsController < ApplicationController
     respond_to do | format |
       format.html do
         @scratchpad_props = render_to_string json: @scratchpad,
-          meta: { editable: current_user?(@scratchpad.user) }
+          meta: {
+            editable: current_user?(@scratchpad.user),
+            maximum_sync_connections: 1,
+            sync: { push: true, pull: false } # pull not implemented yet
+          }
       end
       format.json { render json: @scratchpad }
     end

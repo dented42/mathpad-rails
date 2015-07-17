@@ -1,4 +1,5 @@
 //= require hash
+//= require queue
 
 { div, p, h2, h3, table, thead, tbody, th, td, tr, input,
    button, form, span, col } = React.DOM
@@ -25,8 +26,11 @@
   getInitialState: ->
     scratchpad: @props.scratchpad
     editing: false
-    newChanges: [] # new changes not yet sent to the server go here
-    unreadChanges: [] # and are put here when sent, and removed when the changes has been confirmed.
+    newChanges: new Queue() # new changes not yet sent to the server go here
+    unsyncedChanges: [] # and are put here when sent, and removed when the changes has been confirmed.
+
+  queueChange: (change) ->
+    @setState newChanges
 
   render: ->
     div className: "scratchpad",
