@@ -1,0 +1,25 @@
+h1 Listing scratchpads
+
+table
+  thead
+    tr
+      th Owner
+      th Title
+      / th Description
+      th
+      th
+      th
+
+  tbody
+    - @scratchpads.each do |scratchpad|
+      tr
+        td = scratchpad.user.username
+        td = scratchpad.title
+        / td = scratchpad.description
+        td = link_to 'Show', scratchpad
+        td = link_to 'Edit', edit_scratchpad_path(scratchpad)
+        td = link_to 'Destroy', scratchpad, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Scratchpad', new_scratchpad_path

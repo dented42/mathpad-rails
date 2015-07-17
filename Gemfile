@@ -44,6 +44,16 @@ gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# lists are nice
+gem 'ranked-model'
+
+# I like json
+gem 'active_model_serializers', '~> 0.10.0.rc2'
+
+# some scss mixins
+gem 'bourbon'
+gem 'neat'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -63,6 +73,8 @@ group :development, :test do
 
   # pry is pretty
   gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 
   #factories are nice
   gem 'fabrication'
