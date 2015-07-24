@@ -1,6 +1,16 @@
 p#notice = notice
 
-= react_component 'Scratchpad', @scratchpad_props
+div
+  
+  h2 = @scratchpad.title
+
+  h3 by #{link_to @scratchpad.user.username, user_path(@scratchpad.user)}
+
+  div = @scratchpad.description
+
+  div
+    - for line in @scratchpad.lines
+      p \( #{line} \)
 
 = link_to 'Edit', edit_scratchpad_path(@scratchpad)
 
