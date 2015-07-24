@@ -1,6 +1,22 @@
 p#notice = notice
 
-= react_component 'Scratchpad', @scratchpad_props
+/ = react_component 'Scratchpad', @scratchpad_props
+
+div#scratchpad[
+  editable=@editable.to_s
+  scratchpad_url=(scratchpad_url @scratchpad.id)
+]
+
+coffee:
+  scratchDiv = document.getElementById('scratchpad')
+
+  padURL = scratchDiv.getAttribute('scratchpad_url')
+
+  viewer = Elm.embed(Elm.Scratchpads, scratchDiv, {
+    scratchpadURL: null
+  })
+  
+  viewer.ports.scratchpadURL.send(padURL)
 
 = link_to 'Edit', edit_scratchpad_path(@scratchpad)
 
