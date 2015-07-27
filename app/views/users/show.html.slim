@@ -8,20 +8,20 @@ dl
   / dd
     = @user.email
 
-div
-  p Scratchpads
-  table
-    thead
-      tr
-        th Name
-        th Description
-        th
-    tbody
-      - @user.scratchpads.each do | scratchpad |
+  dt Scratchpads
+  dd
+    table
+      thead
         tr
-          td = scratchpad.title
-          td = scratchpad.description
-          td = link_to 'View', scratchpad_path(scratchpad)
+          th Name
+          th Description
+          th
+      tbody
+        - @user.scratchpads.each do | scratchpad |
+          tr
+            td = scratchpad.title
+            td = scratchpad.description
+            td = link_to 'View', scratchpad_path(scratchpad)
         
 
 / = link_to 'Edit', edit_user_path(@user)
