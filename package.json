@@ -1,0 +1,13 @@
+{
+  "name": "rails-mathpad",
+  "dependencies": {
+    "browserify": "~> 10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "coffeeify": "^1.1.0",
+    "tcomb-form": "^0.6.3"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}
