@@ -19,10 +19,5 @@
   = f.input :user_id, as: :hidden
   = f.input :title
   = f.input :description
-  = f.label :lines
-  ul.input-list
-    li.input-list-line
-      - @scratchpad.lines.each do |line|
-        input type="text" name="scratchpad[lines][]" value="#{line}"
-  = f.input :lines, as: :array
+  = f.input :lines, as: :text, input_html: {value: @lines_as_text}
   = f.button :submit

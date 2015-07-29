@@ -39,6 +39,7 @@ class ScratchpadsController < ApplicationController
 
   # GET /scratchpads/1/edit
   def edit
+    @lines_as_text = @scratchpad.lines.join("\n")
   end
 
   # POST /scratchpads
@@ -61,7 +62,11 @@ class ScratchpadsController < ApplicationController
   # PATCH/PUT /scratchpads/1.json
   def update
     respond_to do |format|
-      if @scratchpad.update(scratchpad_params)
+      pars = scratchpad_params
+      pars["lines"] = pars["lines"].split(/(\r|\n)+/).delete_if do |line| 
+        line.match(/^[[:space:]]*$/)
+      end
+      if @scratchpad.update(pars)
         format.html { redirect_to @scratchpad, notice: 'Scratchpad was successfully updated.' }
         format.json { render :show, status: :ok, location: @scratchpad }
       else
@@ -97,6 +102,6 @@ class ScratchpadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scratchpad_params
-      params.require(:scratchpad).permit(:title, :description, :user_id)
+      params.require(:scratchpad).permit(:title, :description, :user_id, :lines)
     end
 end
