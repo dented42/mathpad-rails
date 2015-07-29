@@ -1,0 +1,24 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Serve all frontends to the mathpad simultaneously
+desc: |-
+  Currently there are three different frontends being worked on. The
+  original idea was to play with each idea and just go with the superior
+  one. At this time however it looks like each one has it's own
+  merits. I would therefore like to seriously consider finishing all
+  three, and have the application serve each one under a different
+  url/namespace.
+type: :feature
+component: WebUI
+release: 
+reporter: Matias Eyzaguirre <matias@fortlogic.net>
+status: :unstarted
+disposition: 
+creation_time: 2015-07-29 17:38:45.275862 Z
+references: []
+
+id: 07866bc51bbaf032a236a8888936be3221f5827f
+log_events: 
+- - 2015-07-29 17:38:45.276306 Z
+  - Matias Eyzaguirre <matias@fortlogic.net>
+  - created
+  - ""
