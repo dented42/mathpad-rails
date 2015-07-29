@@ -28,5 +28,8 @@ module Mathpad
       g.fixture_replacement :fabrication
     end
 
+    # browserify coffescript
+    config.browserify_rails.commandline_options = "-t coffeeify --extension=\".js.coffee\""
+
   end
 end

@@ -4,6 +4,8 @@
     "browserify": "~> 10.2.4",
     "browserify-incremental": "^3.0.1",
     "coffeeify": "^1.1.0",
+    "react": "^0.13.3",
+    "react-form-for": "^1.1.0",
     "tcomb-form": "^0.6.3"
   },
   "license": "MIT",
