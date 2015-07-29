@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -35,9 +35,6 @@ gem 'high_voltage', '~> 2.3.0'
 # on a diet
 gem 'slim-rails', '~> 3.0.1'
 
-# all the cool kids are doing it
-gem 'react-rails'
-
 # Use Puma as the app server
 gem 'puma'
 
@@ -55,6 +52,7 @@ gem 'bourbon'
 gem 'neat'
 
 # for client side things
+gem 'react-rails'
 gem 'browserify-rails'
 
 group :development, :test do
