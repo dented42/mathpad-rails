@@ -1,14 +1,15 @@
 p#notice = notice
 
-div
+div.scratchpad
   
-  h2 = @scratchpad.title
+  section.metadata
+    h1 = @scratchpad.title
 
-  h3 by #{link_to @scratchpad.user.username, user_path(@scratchpad.user)}
+    h2 by #{link_to @scratchpad.user.username, user_path(@scratchpad.user)}
 
-  div = @scratchpad.description
+    div = @scratchpad.description
 
-  div
+  section.lines
     - for line in @scratchpad.lines
       p \( #{line} \)
 
