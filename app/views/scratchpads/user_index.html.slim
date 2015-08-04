@@ -6,8 +6,10 @@ table
       th Title
       / th Description
       th
-      / th
-      / th
+      - if @can_edit
+        th
+      - if @can_edit
+        th
 
   tbody
     - @scratchpads.each do |scratchpad|
@@ -15,8 +17,10 @@ table
         td = scratchpad.title
         / td = scratchpad.description
         td = link_to 'Show', scratchpad
-        / td = link_to 'Edit', edit_scratchpad_path(scratchpad)
-        / td = link_to 'Destroy', scratchpad, data: {:confirm => 'Are you sure?'}, :method => :delete
+        - if @can_edit
+          td = link_to 'Edit', edit_scratchpad_path(scratchpad)
+        - if @can_edit
+          td = link_to 'Destroy', scratchpad, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

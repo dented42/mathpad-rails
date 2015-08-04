@@ -11,6 +11,7 @@ class ScratchpadsController < ApplicationController
   # GET /user/:user_id/scratchpads.json
   def user_index
     @user = User.find(params[:user_id])
+    @can_edit = current_user? @user
     @scratchpads = @user.scratchpads.all
   end
 
@@ -19,6 +20,7 @@ class ScratchpadsController < ApplicationController
   def show
     respond_to do | format |
       format.html do
+        @can_edit = current_user? @scratchpad.user
         @scratchpad_props = render_to_string json: @scratchpad,
           meta: {
             editable: current_user?(@scratchpad.user),

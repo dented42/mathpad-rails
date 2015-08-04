@@ -11,8 +11,10 @@ header.navigation role="banner"
           = link_to 'About', page_path('about')
         li.nav-link
           = link_to 'Users', users_path
+        li.nav-link
+          = link_to 'Scratchpads', scratchpads_path
         li.nav-link.more
-          a href="javascript:void(0)"  Profile
+          a href="javascript:void(0)"  User
           - if user_signed_in?
             ul.submenu
               li
