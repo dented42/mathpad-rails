@@ -3,47 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .scratchpad {
+  .lines {
+    // we want flexbox
+    @include display(flex);
 
-  table.line-container {
+    // we want this in a column
+    @include flex-direction(column);
 
-//    width: 100%;
+    // don't wrap into multiple columns
+    @include flex-wrap(nowrap);
 
-    col.content {
-//      width: 100%;
-    }
-    
-    tr.line {
-      text-align: center;
+    // lines flow from the top of the page down
+    @include justify-content(flex-start);
 
-      // td.content-cell {
-      //   background-color: red;
-      //   width: 100%;
-      // }
+    // center math lines
+    @include align-items(center);
 
-      .proxy {
-        background-color: red;
-        line-height: 0.75em;
-        font-size: 0.75em;
-        background-color: #EEE;
-        color: #CCC;
-        border-radius: 50vh;
-        transition: 0.5s;
-      
-        &:hover {
-          font-size: 1em;
-          line-height: 1em;
-          background-color: #DDD;
-          color: #888;
-        };
-      };
-
-      .changed {
-        background-color: #FCC;
-      };
-
-      .pending {
-        background-color: #FFC;
-      };
-    };
-  };
+    // column should be centered
+    @include align-content(center);
+  }
 }
