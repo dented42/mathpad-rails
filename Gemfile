@@ -35,14 +35,27 @@ gem 'high_voltage', '~> 2.3.0'
 # on a diet
 gem 'slim-rails', '~> 3.0.1'
 
-# all the cool kids are doing it
-gem 'react-rails'
-
 # Use Puma as the app server
 gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# lists are nice
+gem 'ranked-model'
+
+# I like json
+gem 'active_model_serializers', '~> 0.10.0.rc2'
+
+# some scss mixins
+gem 'bourbon'
+gem 'neat'
+
+# for client side things
+gem "bower-rails"
+
+#forms
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +76,8 @@ group :development, :test do
 
   # pry is pretty
   gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 
   #factories are nice
   gem 'fabrication'
