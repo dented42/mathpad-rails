@@ -41,12 +41,14 @@ class ScratchpadsController < ApplicationController
 
   # GET /scratchpads/1/edit
   def edit
+    authenticate_user!
     @lines_as_text = @scratchpad.lines.join("\n")
   end
 
   # POST /scratchpads
   # POST /scratchpads.json
   def create
+    authenticate_user!
     @scratchpad = Scratchpad.new(scratchpad_params)
 
     respond_to do |format|
@@ -63,6 +65,7 @@ class ScratchpadsController < ApplicationController
   # PATCH/PUT /scratchpads/1
   # PATCH/PUT /scratchpads/1.json
   def update
+    authenticate_user!
     respond_to do |format|
       pars = scratchpad_params
       pars["lines"] = pars["lines"].split(/(\r|\n)+/).delete_if do |line| 
@@ -81,10 +84,15 @@ class ScratchpadsController < ApplicationController
   # DELETE /scratchpads/1
   # DELETE /scratchpads/1.json
   def destroy
-    @scratchpad.destroy
-    respond_to do |format|
-      format.html { redirect_to scratchpads_url, notice: 'Scratchpad was successfully destroyed.' }
-      format.json { head :no_content }
+    authenticate_user!
+    if current_user?(@scratchpad.user)
+      @scratchpad.destroy
+      respond_to do |format|
+        format.html { redirect_to scratchpads_url, notice: 'Scratchpad was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      render status: :forbidden
     end
   end
 
