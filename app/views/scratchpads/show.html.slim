@@ -1,0 +1,18 @@
+p#notice = notice
+
+div
+  
+  h2 = @scratchpad.title
+
+  h3 by #{link_to @scratchpad.user.username, user_path(@scratchpad.user)}
+
+  div = @scratchpad.description
+
+  div
+    - for line in @scratchpad.lines
+      p \( #{line} \)
+
+- if @can_edit
+  = link_to 'Edit', edit_scratchpad_path(@scratchpad)
+
+= link_to 'Back', scratchpads_path

@@ -1,0 +1,15 @@
+h1 Listing scratchpads
+
+table
+  thead
+    tr
+      th Owner
+      th Title
+      / th Description
+
+  tbody
+    - @scratchpads.each do |scratchpad|
+      tr
+        td = link_to scratchpad.user.username, user_path(scratchpad.user)
+        td = link_to scratchpad.title, scratchpad_path(scratchpad)
+        / td = scratchpad.description

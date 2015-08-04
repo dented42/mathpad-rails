@@ -1,0 +1,49 @@
+// Place all the styles related to the scratchpads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.scratchpad {
+
+  table.line-container {
+
+//    width: 100%;
+
+    col.content {
+//      width: 100%;
+    }
+    
+    tr.line {
+      text-align: center;
+
+      // td.content-cell {
+      //   background-color: red;
+      //   width: 100%;
+      // }
+
+      .proxy {
+        background-color: red;
+        line-height: 0.75em;
+        font-size: 0.75em;
+        background-color: #EEE;
+        color: #CCC;
+        border-radius: 50vh;
+        transition: 0.5s;
+      
+        &:hover {
+          font-size: 1em;
+          line-height: 1em;
+          background-color: #DDD;
+          color: #888;
+        };
+      };
+
+      .changed {
+        background-color: #FCC;
+      };
+
+      .pending {
+        background-color: #FFC;
+      };
+    };
+  };
+}
