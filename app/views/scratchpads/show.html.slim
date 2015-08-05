@@ -11,7 +11,7 @@ div.scratchpad
 
   section.lines
     - for line in @scratchpad.lines
-      p \( #{line} \)
+      p \[ #{line} \]
 
 - if @can_edit
   = link_to 'Edit', edit_scratchpad_path(@scratchpad)
